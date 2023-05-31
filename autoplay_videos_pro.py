@@ -117,10 +117,11 @@ print(len(vl_2))'''
 
 #启动浏览器
 driver=webdriver.Chrome()
+# driver=webdriver.ChromiumEdge()
 
 #状态变量
 v_start=0 #大视频起始下标
-sub_v_start=2 #子视频起始下标
+sub_v_start=0 #子视频起始下标
 login_times=0
 quit_normal=False
 while True:
@@ -224,7 +225,7 @@ while True:
             play_speed_switch.click()
 
             try:
-                WebDriverWait(driver,timeout=100*60,poll_frequency=5).until(alert_or_relogin())
+                WebDriverWait(driver,timeout=240*60,poll_frequency=5).until(alert_or_relogin())
             except:
                 print('Here is wrong! line 229')
                 bool_test_2=alert_or_relogin()(driver)
@@ -267,8 +268,10 @@ while True:
             break
         #返回课程列表
         sub_v_start=0  #初始化子视频索引，因为下一个大视频一定从0开始
-        elem=driver.find_element(By.XPATH, '/html/body/div[1]/a[1]')
-        elem.click()
+        # elem=driver.find_element(By.XPATH, '/html/body/div[1]/a[1]')
+        # elem.click()
+        driver.close()
+        driver.switch_to.window(handles[0])
         time.sleep(5)
         quit_normal=True
     #如果视频播放完毕，则跳出循环
