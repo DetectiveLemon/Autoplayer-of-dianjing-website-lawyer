@@ -117,7 +117,6 @@ print(len(vl_2))'''
 
 #启动浏览器
 driver=webdriver.Chrome()
-# driver=webdriver.ChromiumEdge()
 
 #状态变量
 v_start=0 #大视频起始下标
@@ -219,8 +218,10 @@ while True:
             time.sleep(3)
             move = driver.find_element(By.CLASS_NAME, r'my_mask')
             ActionChains(driver).move_to_element(move).perform()
+            time.sleep(3)
             play_speed_current = driver.find_element(By.CLASS_NAME, r'current-rate')
             play_speed_current.click()
+            time.sleep(1)
             play_speed_switch = driver.find_element(By.XPATH, r'//*[@class="rate-components"]/ul/li[1]')
             play_speed_switch.click()
 
